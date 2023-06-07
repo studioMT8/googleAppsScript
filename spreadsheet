@@ -1,0 +1,67 @@
+/**
+ * スプレッドシートを開く
+ * シートIDで選択されたシートを選ぶ
+ * @param {string} ssID スプレッドシートのID
+ * @returns {object} 開いたスプレッドシートオブジェクト
+ * /
+function openSS(ssID) {
+  return SpreadsheetApp.openById(ssID);
+}
+
+/**
+ * スプレッドシートの、シート名で選択されたシートを選ぶ
+ * @param {object} ssObj スプレッドシートオブジェクト
+ * @param {string} sheetName 選択するシート名
+ * @returns {object} 選択したシートオブジェクト
+ * /
+function selectSheetByName(ssObj ,sheetName) {
+  return ssObj.getSheetByName(sheetName);
+}
+
+/**
+ * 単一セルの値を読み込む
+ * @param {object} sheetObj シートオブジェクト
+ * @param {number} row 読み込むセルの行位置
+ * @param {number} col 読み込むセルの列位置
+ * @returns {any} 読み込んだセルの値
+ * /
+function read1Cell(sheetObj ,row ,col) {
+  return sheetObj.getRange(row ,col).getValue();
+}
+
+/**
+ * 指定範囲のセルの値を読み込む
+ * @param {object} sheetObj シートオブジェクト
+ * @param {number} begRow 読み込むセルの開始行
+ * @param {number} begCol 読み込むセルの開始列
+ * @param {number} rows 読み込むセルの行数
+ * @param {number} cols 読み込むセルの列数
+ * @returns {array} 読み込んだセルの値(2次元配列)
+ * /
+function readRangeCell(sheetObj ,begRow ,begCol ,rows ,cols) {
+  return sheetObj.getRange(begRow ,begCol ,rows ,cols).getValues();
+}
+
+/**
+ * 単一セルに値を書き込む
+ * @param {object} sheetObj シートオブジェクト
+ * @param {number} row 書き込むセルの行位置
+ * @param {number} col 書き込むセルの列位置
+ * @param {any} cellVal 書き込む値
+ * /
+function write1Cell(sheetObj ,row ,col ,cellVal) {
+  sheetObj.getRange(row ,col).setValue(cellVal);
+}
+
+/**
+ * 指定範囲のセルに値を書き込む
+ * @param {object} sheetObj シートオブジェクト
+ * @param {number} begRow 書き込むセルの開始行
+ * @param {number} begCol 書き込むセルの開始列
+ * @param {number} rows 書き込むセルの行数
+ * @param {number} cols 書き込むセルの列数
+ * @param {any} cellVals 書き込む値（2次元配列）
+ * /
+function writeRangeCell(sheetObj ,begRow ,begCol ,rows ,cols ,cellVals) {
+  sheetObj.getRange(begRow ,begCol ,rows ,cols).setValues(cellVals);
+}
