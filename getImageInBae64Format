@@ -1,0 +1,10 @@
+/**
+ * GDriveの画像ファイルをbase64形式で読み込む
+ * @param id ファイルID
+ * @return base64に変換した画像ファイル
+ */
+function getImageInBae64Format(imageFileID) {
+  const file = DriveApp.getFileById(imageFileID);
+  const data = file.getBlob().getBytes();
+  return Utilities.base64Encode(data);
+}
